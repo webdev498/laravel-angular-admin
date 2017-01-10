@@ -1,0 +1,66 @@
+{
+    "name": "Laravel Angular Admin",
+    "description": "Laravel + Angularjs + Bootstrap + AdminLTE binded by Gulp workflow Admin Dashboard Boilerplate",
+    "keywords": ["laravel", "angular", "bootstrap", "admin", "admin template", "ui-router", "api", "angular-bootstrap"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=5.5.9",
+        "laravel/framework": "5.2.*",
+        "tymon/jwt-auth": "0.5.*",
+        "barryvdh/laravel-cors": "0.7.x",
+        "laravelangular/generators": "2.7.x",
+        "dingo/api": "1.0.x@dev",
+        "laravel/socialite": "^2.0",
+        "bican/roles": "2.1.*"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~4.0",
+        "symfony/css-selector": "2.8.*|3.0.*",
+        "symfony/dom-crawler": "2.8.*|3.0.*",
+        "squizlabs/php_codesniffer": "*"
+    },
+    "autoload": {
+        "classmap": [
+            "database"
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+           "php -r \"unlink('code_of_conduct.md');\"",
+           "php -r \"unlink('CHANGELOG.md');\"",
+           "php -r \"unlink('.codeclimate.yml');\"",
+           "php -r \"unlink('.travis.yml');\"",
+           "php artisan key:generate",
+           "php artisan jwt:generate"
+        ],
+        "post-install-cmd": [
+            "php artisan clear-compiled",
+            "php -r \"copy('.env.example', '.env');\"",
+            "php artisan optimize",
+            "php artisan key:generate"
+        ],
+        "pre-update-cmd": [
+            "php artisan clear-compiled"
+        ],
+        "post-update-cmd": [
+            "php artisan optimize"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
